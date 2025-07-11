@@ -1,5 +1,16 @@
 ---
-description: 
+description: "Global rules for all code"
 globs: 
 alwaysApply: true
 ---
+## Global Rules
+- Make Minimal Changes – Preserve existing patterns and refactor only when it adds clear value.
+- Use DRY Principle – Eliminate all code duplication by abstracting logic into reusable, composable units.
+- Declare Constants First – Place all constants at the top of the module with semantic UPPER_SNAKE_CASE names.
+- Abstract Paths Explicitly – Convert string paths to path objects at module boundaries and use descriptive variable names.
+- Raise Exceptions Explicitly – Avoid silent exits; fail fast with meaningful, context-rich error messages.
+- Design Single-Responsibility Functions – Ensure each function performs one clear, testable task.
+- Always Use Type Hints – Specify types for all parameters and return values to ensure clarity and static validation.
+- Avoid Input Mutation – Treat function inputs as immutable and avoid in-place modification.
+- Separate Concerns Strictly – Decouple configuration, I/O, and domain logic into isolated, testable components.
+- Fail Fast – Avoid silent exits; fail fast with meaningful, context-rich error messages.
