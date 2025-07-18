@@ -1,0 +1,150 @@
+---
+globs: *py
+alwaysApply: false
+---
+## Python General Rules
+
+- Use Pydantic
+#### Philosophy
+
+* "Beautiful is better than ugly" – PEP 20
+* "Explicit is better than implicit"
+* "Readability counts"
+* Fix each issue as soon as it's discovered
+* Write documentation and tests alongside code
+* Prefer human-readable code over clever code
+
+## Architecture Principles
+
+#### Avoid Early Abstraction
+
+* Prefer functions over classes unless managing internal state
+* Do not introduce classes merely to group related functions
+* Use procedural programming for linear tasks and data flow
+* Introduce classes only if:
+
+  * Multiple instances with distinct state are needed
+  * The logic involves complex state transitions
+  * Object-oriented relationships are necessary
+
+#### Single Responsibility
+
+* Each function should have one clear, atomic purpose
+* Do not mix unrelated concerns in a single function
+* Pass dependencies explicitly through arguments
+* Make external inputs visible through function parameters
+
+#### Function Design
+
+* Use action-oriented, head-first naming: e.g., `convert_pth_to_hf()`, `install_dependencies()`
+* Avoid vague terms: `process()`, `handle()`, `run()`, `manager()`
+* Use verbs up front to emphasise behaviour
+
+## Style
+
+#### Naming Conventions
+
+* Variables/functions: `lower_case_with_underscores`
+* Classes/exceptions: `CapWords`
+* Constants: `ALL_CAPS_WITH_UNDERSCORES`
+* Protected methods: `_single_leading_underscore()`
+* Private methods: `__double_leading_underscore()`
+
+#### Indentation
+
+* Use 4 spaces per indentation level
+* Do not use tabs
+* Be consistent across the file
+
+#### Equality Comparisons
+
+* Use `if attr`, `if not attr`, or `if attr is None`
+* Avoid `if attr == True`, `if attr == False`, or `if attr == None`
+
+#### List Comprehensions
+
+* Prefer `[x for x in iterable if condition]` over manual loop-and-append
+* For mapping or filtering, consider `map()` or `filter()` where clearer
+
+#### Context Management
+
+* Use `with` for resource handling (e.g. file I/O)
+
+  * Ensures proper cleanup and exception safety
+
+#### Imports
+
+* Group into 3 sections: stdlib, third-party, local imports
+* Avoid `from module import *`
+* Prefer full path imports: `import audio.controller`, not `from audio import Controller`
+* Use `isort` for import organisation, optionally with `profile=black`
+
+#### Line Length
+
+* 80–100 characters max per line
+* Use implicit line continuation inside parentheses when needed
+
+## Code Organisation
+
+#### Constants and Configuration
+
+* Define constants at module-level
+* Group related constants together
+* Use `UPPER_SNAKE_CASE`
+* Avoid class attributes for configuration unless class-specific
+* Avoid hardcoded values; allow for parameterisation and injection
+
+#### Error Handling
+
+* Catch exceptions explicitly
+* Return boolean indicators (e.g. success/failure) when appropriate
+* Log errors with context-rich messages
+* Handle edge cases proactively (e.g. missing files, format variations)
+
+#### Docstrings and Comments
+
+* Follow PEP 257
+* One-liners for simple functions
+* Multi-line docstrings should include:
+
+  * Summary
+  * Usage (if needed)
+  * Parameters
+  * Return type and behaviour
+* Avoid excessive comments; prefer expressive naming and helper functions
+
+## Testing Practices
+
+#### Unit Tests
+
+* Isolate from external dependencies (e.g. database, network)
+* Use descriptive test names
+* Use `assert False, "TODO"` for incomplete tests
+
+#### Functional Tests
+
+* Write test names as behaviour specifications
+* Outline scenario steps using comments
+
+## Example Structure
+
+```python
+# Module-level constants
+DEPENDENCIES = ["torch", "transformers", "numpy"]
+MODEL_SIZE_MAP = {(4096, 32): "7B", (5120, 40): "13B"}
+
+# Simple, focused function
+def install_dependencies() -> bool:
+    """Install required packages for model conversion"""
+    # Implementation
+
+def convert_pth_to_hf(input_path: Path, output_path: Path, params: Dict) -> bool:
+    """Convert .pth format to HuggingFace format"""
+    # Implementation
+
+# Main entry point
+def main():
+    if not install_dependencies():
+        return 1
+    # Continue in clear, procedural steps
+```
