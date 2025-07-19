@@ -3,7 +3,7 @@ globs: *py
 alwaysApply: false
 ---
 ## Python General Rules
-
+- dependency : uv 
 - Use Pydantic
 #### Philosophy
 

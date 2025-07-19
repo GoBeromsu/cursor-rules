@@ -3,6 +3,8 @@ description: "Global rules for all code"
 globs: 
 alwaysApply: true
 ---
+## MCP 
+- Sequential Thinking – Break down complex tasks into smaller steps, plan the sequence, and execute them one by one
 ## Global Rules
 - Make Minimal Changes – Preserve existing patterns and refactor only when it adds clear value.
 - Use DRY Principle – Eliminate all code duplication by abstracting logic into reusable, composable units.
