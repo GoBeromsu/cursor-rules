@@ -3,7 +3,7 @@ description: When use obsidian mcp to format text content into markdown
 alwaysApply: false
 ---
 - note location : 00. Inbox/
-- naming convention : [YYYY-MM-DD]_[Title]
+- naming convention : YYYYMMDD_Title
 # Content
 
 ```****
